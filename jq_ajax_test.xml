@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wurzel>
+  <knotenA>Wert des ersten Knotens</knotenA>
+  <knotenB attributA = "Erstes Attribut des zweiten Knotens"
+      attributB = "Zweites Attribut des zweiten Knotens">
+      Wert des zweiten Knotens</knotenB>
+</wurzel>

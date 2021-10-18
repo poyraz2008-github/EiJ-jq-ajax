@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>jQuery und Ajax</title>
+   <style>
+      table,td {border:1px solid black}
+   </style>
+   <script src="jquery-3.6.0.min.js"></script>
+   <script>
+      $(document).ready(function()
+      {
+         $("#idLink1").click(function() {
+            $("#idAusgabe").load("jq_ajax_test.txt"); });//laedt all den Text aus jq_ajax_test.txt
+         $("#idLink2").click(function() {
+            $("#idAusgabe").load("jq_ajax_test.htm"); });//laedt gesamtes HTML aus jq_ajax_test.htm
+         $("#idLink3").click(function() {
+            $("#idAusgabe").load("jq_ajax_test.htm #t1"); });//laedt HTML mit id 't1' aus jq_ajax_test.htm
+         $("#idLink4").click(function() {
+            $.post("jq_ajax_test.php", function(ergebnis) {
+               $("#idAusgabe").html(ergebnis); }); });
+         $("#idLink5").click(function() {
+            $.post("jq_ajax_test_daten.php", {zahl1:12.2, zahl2:25.5},
+               function(ergebnis) {$("#idAusgabe").html(ergebnis);}); });
+         $("#idLink6").click(function() {
+           $.post("jq_ajax_test.xml", function(ergebnis) {
+               $("#idAusgabe").html(ergebnis.getElementsByTagName(
+               "knotenA")[0].firstChild.nodeValue + " / " + ergebnis
+               .getElementsByTagName("knotenB")[0].getAttribute(
+               "attributA")); }); });
+      });
+ </script>
+</head>
+
+<body>
+   <p><b>Methode load() für Text und HTML:</b></p><p>
+   <a id="idLink1" href="#"> 1: Gesamte Text-Datei</a><br>
+   <a id="idLink2" href="#"> 2: Gesamte HTML-Datei</a><br>
+   <a id="idLink3" href="#"> 3: Teil 1 aus HTML-Datei</a></p>
+
+   <p><b>Methode post() für XML und PHP:</b></p><p>
+   <a id="idLink4" href="#"> 4: HTML-Ergebnis von PHP</a><br>
+   <a id="idLink5" href="#"> 5: Senden und HTML-Ergebnis von PHP</a><br>
+   <a id="idLink6" href="#"> 6: Teil aus XML-Datei</a></p>
+
+   <table><tr><td id="idAusgabe">Start-Text</td></tr></table>
+</body>
+</html>
